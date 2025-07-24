@@ -1,8 +1,25 @@
 from .deck_abstract import DeckAbstract
 from .card import Card
 from typing import List, Iterator
-from .utils import generate_deck, fair_deck
+from .utils import generate_deck
 import random
+from .errors import DeckCheatingError
+from collections.abc import Callable
+
+def fair_deck(func: Callable) -> Callable:
+    """ a decorator fn that prevent the deck from containig 2 identical cards """
+    def wrapper(self: "Deck", *args, **kwargs):
+        cards_obj = {}
+        card_list = self._cards
+        if func.__name__ == "add_card":
+            card_list.append(*args)
+
+        for item in card_list:
+            if item in cards_obj:
+                raise DeckCheatingError("the deck has duplicity of cards")
+            cards_obj[item] = 1
+        return func(self, *args, **kwargs)
+    return wrapper
 
 class Deck(DeckAbstract):
     """
@@ -27,22 +44,22 @@ class Deck(DeckAbstract):
     @property
     @fair_deck
     def cards(self) -> List[Card]:
-        """ return a copy of the deck """
+        """ returns a copy of the deck """
         return self._cards.copy()
     
     def shuffle(self) -> None:
-        """ shuffle the crads in the deck """
+        """ shuffles the crads in the deck """
         random.shuffle(self._cards)
 
     def draw(self) -> Card | None:
-        """ remove and return a card from the beginning of the deck. if deck is empty returns None """
+        """ removes and return a card from the beginning of the deck. if deck is empty returns None """
         if len(self._cards) == 0:
             return None
         return self._cards.pop(0)
     
     @fair_deck
     def add_card(self, card: Card) -> None:
-        """ add a card to end the deck. """
+        """ adds a card to the end the deck. """
         self._cards.append(card)
 
     def __len__(self) -> int:
@@ -52,7 +69,7 @@ class Deck(DeckAbstract):
     def __getitem__(self, index: int) -> Card:
         """ return a card by its index in the deck """
         if index > len(self._cards) - 1:
-            raise IndexError(f"Index out of range.")
+            raise IndexError("Index out of range.")
         return self._cards[index]
     
     def __iter__(self) -> Iterator[Card]:

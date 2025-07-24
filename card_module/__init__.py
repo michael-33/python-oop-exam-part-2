@@ -1,4 +1,4 @@
-from .utils import max_card, cards_stats # type: ignore
-from .deck import Deck # type: ignore
-from .card import Card # type: ignore
-from .enums import CardSuit, CardRank # type: ignore
+from .utils import max_card, cards_stats
+from .deck import Deck
+from .card import Card
+from .enums import CardSuit, CardRank

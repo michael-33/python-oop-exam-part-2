@@ -1,8 +1,9 @@
 from card_module import Deck, cards_stats, max_card, Card, CardSuit, CardRank
 
-deck = Deck()
-# print(deck)
+deck = Deck(False)
+print(deck)
 
+# # basic operations
 # print("deck size", len(deck))
 # card = deck.draw()
 # print("card", card)
@@ -12,7 +13,7 @@ deck = Deck()
 # deck.add_card(new_card)
 # print("deck size", len(deck))
 
-# test validation
+# # test validation
 # print(deck.cards)
 # deck.add_card(Card(CardSuit(1), CardRank(2)))
 

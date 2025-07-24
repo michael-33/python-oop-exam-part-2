@@ -38,13 +38,13 @@ class Card(CardAbstract):
     def __eq__(self, other: object) -> bool:
         """ perform comparison between two Card instances to determine if they are equel """
         if not isinstance(other, Card):
-            raise ValueError("one of the compared object is not a Card")
+            raise ValueError("one of the compared objects is not a Card")
         return (self._rank.value == other._rank.value and self._suit.value == other._suit.value)
     
     def __lt__(self, other: object) -> bool:
         """ perform comparison between two Card instances to determine if the first param is smaller than the second one """
         if not isinstance(other, Card):
-            raise ValueError("one of the compared object is not a Card")
+            raise ValueError("one of the compared objects is not a Card")
         if (self._rank.value == other._rank.value):
             return self._suit.value < other._suit.value
         return self._rank.value < other._rank.value
@@ -52,7 +52,7 @@ class Card(CardAbstract):
     def __gt__(self, other: object) -> bool:
         """ perform comparison between two Card instances to determine if the first param is bigger than the second one """
         if not isinstance(other, Card):
-            raise ValueError("one of the compared object is not a Card")
+            raise ValueError("one of the compared objects is not a Card")
         if (self._rank.value == other._rank.value):
             return self._suit.value > other._suit.value
         return self._rank.value > other._rank.value
