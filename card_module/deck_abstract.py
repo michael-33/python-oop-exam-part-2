@@ -28,7 +28,7 @@ class DeckAbstract(ABC):
 
     @abstractmethod
     def add_card(self, card: Card) -> None:
-        """ add a card to end the deck. """
+        """ adds a card to the end of the deck. """
         pass
 
     @abstractmethod

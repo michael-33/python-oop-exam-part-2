@@ -20,11 +20,11 @@ def cards_stats(*args: Card, **kwargs: int) -> dict[str, List[Card] | int]:
     response: dict[str, List[Card] | int] = {}
     sorted_card_list = sorted(list(args))
 
-    if kwargs["len"]:
+    if "len" in kwargs:
         response["len"] = len(args)
-    if kwargs["max"]:
+    if "max" in kwargs:
         list_size = len(sorted_card_list)
         response["max"] = sorted_card_list[list_size - kwargs["max"]:list_size][::-1]
-    if kwargs["min"]:
+    if "min" in kwargs:
         response["min"] = sorted_card_list[0:kwargs["min"]]
     return response

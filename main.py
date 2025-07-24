@@ -1,6 +1,6 @@
 from card_module import Deck, cards_stats, max_card, Card, CardSuit, CardRank
 
-deck = Deck(False)
+deck = Deck()
 print(deck)
 
 # # basic operations
@@ -20,8 +20,8 @@ print(deck)
 
 # # accessing by index
 # print("Accessing cards directly by index:")
-# for i in range(5):
-#     print(f"Card at index {i}: {deck[i]}")
+for i in range(len(deck)):
+    print(f"Card at index {i}: {deck[i]}")
 
 # # iterate the cards in the deck
 # print("Iterating through all cards in the deck:")

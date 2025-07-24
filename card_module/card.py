@@ -23,7 +23,7 @@ class Card(CardAbstract):
 
     def get_display_name(self) -> str:
         """ returns the card suit and rank """
-        return f"{self.rank.name} of {self.suit.name}"
+        return f"{self.rank.name.title()} of {self.suit.name.title()}"
     
     @property
     def suit(self) -> CardSuit:
@@ -63,7 +63,7 @@ class Card(CardAbstract):
     
     def __str__(self) -> str:
         """ return a textual representation of the card """
-        return f"{self._rank.name} of {self._suit.name}"
+        return f"{self._rank.name.title()} of {self._suit.name.title()}"
     
     def __repr__(self) -> str:
         """ return a printable representation of the card object """

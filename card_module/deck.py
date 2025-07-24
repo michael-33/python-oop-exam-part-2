@@ -7,7 +7,7 @@ from .errors import DeckCheatingError
 from collections.abc import Callable
 
 def fair_deck(func: Callable) -> Callable:
-    """ a decorator fn that prevent the deck from containig 2 identical cards """
+    """ a decorator function that prevent the deck from containig identical cards """
     def wrapper(self: "Deck", *args, **kwargs):
         cards_obj = {}
         card_list = self._cards
@@ -59,7 +59,9 @@ class Deck(DeckAbstract):
     
     @fair_deck
     def add_card(self, card: Card) -> None:
-        """ adds a card to the end the deck. """
+        """ adds a card to the end of the deck. """
+        if not isinstance(card, Card):
+            raise ValueError("the object given is not a Card")
         self._cards.append(card)
 
     def __len__(self) -> int:
